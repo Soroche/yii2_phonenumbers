@@ -47,16 +47,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'phone',
-            'person.name',
-            [
-                'value' => function($data){
-                    if($data->pesron_id==$model->id)
-                        echo $data->phone;
-                }
+                ['class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия', 
+                'headerOptions' => ['width' => '80'],
+                'template' => '{update} {delete}{link}',
+                'buttons' => [
+                    'update' => function ($url,$model) {
+                        //return Html::a('<span class="glyphicon glyphicon-screenshot"></span>', $url);
+                        return Html::a('Update', ['updatephone', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                        },
+                    ],
+                ],
+            ],
 
-            ],
-                ['class' => 'yii\grid\ActionColumn'],
-            ],
-        ]); ?>
+        ]); 
+    ?>
 
 </div>

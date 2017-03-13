@@ -3,6 +3,8 @@
 namespace frontend\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+
 
 /**
  * This is the model class for table "person".
@@ -57,4 +59,14 @@ class Person extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PhoneNumbers::className(), ['pesron_id' => 'id']);
     }
+
+    /*public function getPhones()
+    {
+        $dataProvider = new ActiveDataProvider(
+            [
+            'query'=> PhoneNumbers::find()->where(['pesron_id'=>$id]),
+            ]);
+
+        return $dataProvider;
+    }*/
 }

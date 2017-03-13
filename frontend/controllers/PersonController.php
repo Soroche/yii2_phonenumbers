@@ -7,12 +7,10 @@ use frontend\models\Person;
 use frontend\models\PersonSearch;
 use frontend\models\PhoneNumbers;
 use frontend\models\PhoneNumbersSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
-
-
 use yii\data\ActiveDataProvider;
 
 
@@ -58,30 +56,28 @@ class PersonController extends Controller
      */
     public function actionView($id)
     {
+        /*$model = new Person();
+        $dataProv = $model->getPhones();
+        */
         $searchModel = new PhoneNumbersSearch();
-        //$dataProv = PhoneNumbers::find()->where(['pesron_id'=>$id])->all();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        //$dataProv = PhoneNumbers::find()->where(['pesron_id'=>$id])->all();
         /*$rows = (new \yii\db\Query())
             ->select(['id', 'phone'])
             ->from('phone_numbers')
             ->where(['pesron_id' => $id])
-            ->all();
-            */
-        
-        /*$dataProv = new ActiveDataProvider(
+            ->all();*/
+
+        $dataProvider = new ActiveDataProvider(
             [
-            'query'=> PhoneNumbers::find()->where(['pesron_id'=>$id])->all(),
-            'pagination' => [
-                'pagesize' => 20,
-            ],
-            ]);*/
+            'query'=> PhoneNumbers::find()->where(['pesron_id'=>$id]),
+            ]);
                 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
-            //'dataProv' => $rows,
             'dataProvider' => $dataProvider,
+            //'dataProv' => $dataProv,
         ]);
     }
 
@@ -106,12 +102,14 @@ class PersonController extends Controller
     public function actionCreatephone()
     {
         $model = new PhoneNumbers();
+        //$model = $this->findModelPhone($model->pesron_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->pesron_id]);
         } else {
             return $this->render('createphone', [
                 'model' => $model,
+                'number' => $model->pesron_id,
             ]);
         }
     }
@@ -131,6 +129,20 @@ class PersonController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionUpdatephone($id)
+    {
+        $model_phone = $this->findModelPhone($id);
+
+        if ($model_phone->load(Yii::$app->request->post()) && $model_phone->save()) {
+            return $this->redirect(['view', 'id' => $model_phone->id]);
+        } 
+        else {
+            return $this->render('updatephone', [
+                'model_phone' => $model_phone,
             ]);
         }
     }
@@ -158,6 +170,15 @@ class PersonController extends Controller
     protected function findModel($id)
     {
         if (($model = Person::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findModelPhone($id)
+    {
+        if (($model = PhoneNumbers::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
