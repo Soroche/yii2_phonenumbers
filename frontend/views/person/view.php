@@ -34,8 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'first_name',
             'last_name',
             'sur_name',
-            'date_of_bday',
-            //'format' => ['date', 'php:d-m-Y']
+            [
+                'label' => 'Дата рождения',
+                'value' => $model->date_of_bday,
+                'format'=> ['date', 'php:d.m.Y'],
+            ],
         ],
     ]) ?> 
 

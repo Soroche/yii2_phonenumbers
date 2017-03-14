@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cell_number', ['template' => "{label}\n{hint}\n{input}\n{error}"])->hint('Введите номер телефона')->textInput(['maxlength' => true]) ?>
 
-     <?= $form->field($model, 'person_id') ->textInput(array('placeholder' => 'Номер контакта', 'class'=>'form-control text-center')); ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
@@ -23,3 +21,4 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
