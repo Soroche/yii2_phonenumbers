@@ -7,29 +7,29 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\PhoneNumbersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Phone Numbers';
+$this->title = 'Phone Number';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="phone-numbers-index">
+<div class="phone-number-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Phone Numbers', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Phone Number', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'phone',
+            'cell_number',
             [
             'value' => 'person.last_name',
             ],
             [
             
-            'value' => 'person.name',
+            'value' => 'person.first_name',
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

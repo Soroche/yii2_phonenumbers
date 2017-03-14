@@ -12,9 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'cell_number', ['template' => "{label}\n{hint}\n{input}\n{error}"])->hint('Введите номер телефона')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'id')->textInput() ?>
 
-     <?= $form->field($model, 'person_id') ->textInput(array('placeholder' => 'Номер контакта', 'class'=>'form-control text-center')); ?>
+    <?= $form->field($model, 'cell_number')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'person_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

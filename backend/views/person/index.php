@@ -2,11 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\DetailView;
-
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\PersonSearch */
+/* @var $searchModel app\models\PersonSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'People';
@@ -25,17 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
             'first_name',
             'last_name',
             'sur_name',
-            [
-            'attribute' => 'date_of_bday',
-            'format' => ['date', 'php:d-m-Y']
-            ],
+            'date_of_bday',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-
-
 </div>

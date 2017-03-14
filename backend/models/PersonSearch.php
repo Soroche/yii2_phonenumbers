@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\PhoneNumbers;
+use app\models\Person;
 
 /**
- * PhoneNumbersSearch represents the model behind the search form about `frontend\models\PhoneNumbers`.
+ * PersonSearch represents the model behind the search form about `app\models\Person`.
  */
-class PhoneNumbersSearch extends PhoneNumbers
+class PersonSearch extends Person
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class PhoneNumbersSearch extends PhoneNumbers
     public function rules()
     {
         return [
-            [['id', 'pesron_id'], 'integer'],
-            [['phone'], 'safe'],
+            [['id'], 'integer'],
+            [['first_name', 'last_name', 'sur_name', 'date_of_bday'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class PhoneNumbersSearch extends PhoneNumbers
      */
     public function search($params)
     {
-        $query = PhoneNumbers::find();
+        $query = Person::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +60,12 @@ class PhoneNumbersSearch extends PhoneNumbers
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'pesron_id' => $this->pesron_id,
+            'date_of_bday' => $this->date_of_bday,
         ]);
 
-        $query->andFilterWhere(['like', 'phone', $this->phone]);
+        $query->andFilterWhere(['like', 'first_name', $this->first_name])
+            ->andFilterWhere(['like', 'last_name', $this->last_name])
+            ->andFilterWhere(['like', 'sur_name', $this->sur_name]);
 
         return $dataProvider;
     }

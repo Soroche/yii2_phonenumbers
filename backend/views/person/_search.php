@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\PhoneNumbersSearch */
+/* @var $model app\models\PersonSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="phone-numbers-search">
+<div class="person-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,9 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'phone') ?>
+    <?= $form->field($model, 'first_name') ?>
 
-    <?= $form->field($model, 'pesron_id') ?>
+    <?= $form->field($model, 'last_name') ?>
+
+    <?= $form->field($model, 'sur_name') ?>
+
+    <?= $form->field($model, 'date_of_bday') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

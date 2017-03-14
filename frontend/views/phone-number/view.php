@@ -7,10 +7,10 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\PhoneNumbers */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Phone Numbers', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Phone Number', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="phone-numbers-view">
+<div class="phone-number-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'phone',
-            'pesron_id',
+            'cell_number',
+            'person_id',
         ],
     ]) ?>
 

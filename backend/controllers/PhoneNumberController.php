@@ -1,22 +1,18 @@
 <?php
 
-namespace frontend\controllers;
+namespace app\controllers;
 
 use Yii;
-use frontend\models\Person;
-use frontend\models\PersonSearch;
-use frontend\models\PhoneNumber;
-use frontend\models\PhoneNumberSearch;
-
+use app\models\PhoneNumber;
+use app\models\PhoneNumberSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
 
 /**
- * PersonController implements the CRUD actions for Person model.
+ * PhoneNumberController implements the CRUD actions for PhoneNumber model.
  */
-class PersonController extends Controller
+class PhoneNumberController extends Controller
 {
     /**
      * @inheritdoc
@@ -34,12 +30,12 @@ class PersonController extends Controller
     }
 
     /**
-     * Lists all Person models.
+     * Lists all PhoneNumber models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PersonSearch();
+        $searchModel = new PhoneNumberSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,33 +45,25 @@ class PersonController extends Controller
     }
 
     /**
-     * Displays a single Person model.
+     * Displays a single PhoneNumber model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $searchModel = new PhoneNumberSearch();
-        $dataProvider = new ActiveDataProvider(
-            [
-            'query'=> PhoneNumber::find()->where(['person_id'=>$id]),
-            ]);
-                
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Creates a new Person model.
+     * Creates a new PhoneNumber model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Person();
+        $model = new PhoneNumber();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -87,7 +75,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Updates an existing Person model.
+     * Updates an existing PhoneNumber model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -106,7 +94,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Deletes an existing Person model.
+     * Deletes an existing PhoneNumber model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -118,50 +106,14 @@ class PersonController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionCreatephone()
-    {
-        $model = new PhoneNumber();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->person_id]);
-        } else {
-            return $this->render('createphone', [
-                'model' => $model,
-                'number' => $model->person_id,
-            ]);
-        }
-    }
-
-    public function actionUpdatephone($id)
-    {
-        $model_phone = $this->findModelPhone($id);
-
-        if ($model_phone->load(Yii::$app->request->post()) && $model_phone->save()) {
-            return $this->redirect(['view', 'id' => $model_phone->id]);
-        } 
-        else {
-            return $this->render('updatephone', [
-                'model_phone' => $model_phone,
-            ]);
-        }
-    }
-
     /**
-     * Finds the Person model based on its primary key value.
+     * Finds the PhoneNumber model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Person the loaded model
+     * @return PhoneNumber the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
-    {
-        if (($model = Person::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-    protected function findModelPhone($id)
     {
         if (($model = PhoneNumber::findOne($id)) !== null) {
             return $model;

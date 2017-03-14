@@ -4,10 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 
+
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Person */
 
-$this->title = $model->name;
+$this->title = $model->first_name;
 $this->params['breadcrumbs'][] = ['label' => 'People', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -30,15 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
+            'first_name',
             'last_name',
             'sur_name',
             'date_of_bday',
+            //'format' => ['date', 'php:d-m-Y']
         ],
     ]) ?> 
 
     <p>
-        <?= Html::a('Create Phone Numbers', ['createphone'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Phone Number', ['createphone'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -46,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'phone',
+            'cell_number',
                 ['class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия', 
                 'headerOptions' => ['width' => '80'],

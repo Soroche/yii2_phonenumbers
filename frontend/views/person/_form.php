@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Person */
@@ -12,13 +13,18 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'sur_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'date_of_bday')->textInput() ?>
+    <?= DatePicker::widget( [ 'name'  => 'from_date', 'value'  => '', 'language' => 'ru' ] ) ?>
+
+    <input type="text" id="w0" name="from_date" value="">
+
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -1,9 +1,8 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
 use Yii;
-//use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "person".
@@ -45,10 +44,10 @@ class Person extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'first_name' => 'Имя',
-            'last_name' => 'Фамилия',
-            'sur_name' => 'Отчество',
-            'date_of_bday' => 'Дата рождения',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'sur_name' => 'Sur Name',
+            'date_of_bday' => 'Date Of Bday',
         ];
     }
 
@@ -59,18 +58,4 @@ class Person extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PhoneNumber::className(), ['person_id' => 'id']);
     }
-
-    /*public function getPhones()
-    {
-        $dataProvider = new ActiveDataProvider(
-            [
-            'query'=> PhoneNumbers::find()->where(['pesron_id'=>$id]),
-            ]);
-
-        return $dataProvider;
-    }*/
-
-
-
-
 }

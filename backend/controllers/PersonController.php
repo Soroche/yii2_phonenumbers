@@ -1,18 +1,18 @@
 <?php
 
-namespace frontend\controllers;
+namespace app\controllers;
 
 use Yii;
-use frontend\models\PhoneNumbers;
-use frontend\models\PhoneNumbersSearch;
+use app\models\Person;
+use app\models\PersonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PhoneNumbersController implements the CRUD actions for PhoneNumbers model.
+ * PersonController implements the CRUD actions for Person model.
  */
-class PhoneNumbersController extends Controller
+class PersonController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class PhoneNumbersController extends Controller
     }
 
     /**
-     * Lists all PhoneNumbers models.
+     * Lists all Person models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PhoneNumbersSearch();
+        $searchModel = new PersonSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PhoneNumbersController extends Controller
     }
 
     /**
-     * Displays a single PhoneNumbers model.
+     * Displays a single Person model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class PhoneNumbersController extends Controller
     }
 
     /**
-     * Creates a new PhoneNumbers model.
+     * Creates a new Person model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PhoneNumbers();
+        $model = new Person();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class PhoneNumbersController extends Controller
     }
 
     /**
-     * Updates an existing PhoneNumbers model.
+     * Updates an existing Person model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class PhoneNumbersController extends Controller
     }
 
     /**
-     * Deletes an existing PhoneNumbers model.
+     * Deletes an existing Person model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class PhoneNumbersController extends Controller
     }
 
     /**
-     * Finds the PhoneNumbers model based on its primary key value.
+     * Finds the Person model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PhoneNumbers the loaded model
+     * @return Person the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PhoneNumbers::findOne($id)) !== null) {
+        if (($model = Person::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
