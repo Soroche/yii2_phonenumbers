@@ -31,19 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'first_name',
             'last_name',
+            'first_name',
             'sur_name',
             [
                 'label' => 'Дата рождения',
                 'value' => $model->date_of_bday,
-                'format'=> ['date', 'php:d.m.Y'],
             ],
         ],
     ]) ?> 
 
     <p>
-        <?= Html::a('Create Phone Number', ['createphone'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить номер телефона', ['createphone','$person_id_of_new_cell_number' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -57,9 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['width' => '80'],
                 'template' => '{update} {delete}{link}',
                 'buttons' => [
-                    'update' => function ($url,$model) {
-                        //return Html::a('<span class="glyphicon glyphicon-screenshot"></span>', $url);
-                        return Html::a('Update', ['updatephone', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    'update' => function ($model) {
+                        return Html::a('<span class="glyphicon glyphicon-screenshot"></span>', ['updatephone', 'id' => $model->id]);
                         },
                     ],
                 ],

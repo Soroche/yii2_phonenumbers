@@ -118,29 +118,31 @@ class PersonController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionCreatephone()
+    public function actionCreatephone($person_id_of_new_cell_number)
     {
         $model = new PhoneNumber();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->person_id]);
         } else {
             return $this->render('createphone', [
                 'model' => $model,
-                'number' => $model->person_id,
+                'person_id' => $person_id_of_new_cell_number,
+
             ]);
         }
     }
 
     public function actionUpdatephone($id)
     {
-        $model_phone = $this->findModelPhone($id);
+        $model = $this->findModelPhone($id);
 
-        if ($model_phone->load(Yii::$app->request->post()) && $model_phone->save()) {
-            return $this->redirect(['view', 'id' => $model_phone->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->person_id]);
         } 
         else {
             return $this->render('updatephone', [
-                'model_phone' => $model_phone,
+                'model' => $model,
             ]);
         }
     }

@@ -12,7 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'cell_number', ['template' => "{label}\n{hint}\n{input}\n{error}"])->hint('Введите номер телефона')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cell_number')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'person_id')->hiddenInput(['value'=>$old_person_id])->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

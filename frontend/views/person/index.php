@@ -9,30 +9,36 @@ use yii\widgets\DetailView;
 /* @var $searchModel frontend\models\PersonSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'People';
+$this->title = 'Телефонный справочник';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="person-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Person', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить контакт', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-striped table-bordered'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'first_name',
             'last_name',
+            'first_name',
             'sur_name',
             [
                 'attribute' => 'date_of_bday',
-                'format' => ['date', 'php:d.m.Y']
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'header'=>'Действия', 
+            'headerOptions' => ['width' => '80'],
+            'template' => '{view} {update} {delete}{link}',
+        ],
         ],
     ]); ?>
 

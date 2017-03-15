@@ -60,17 +60,26 @@ class Person extends \yii\db\ActiveRecord
         return $this->hasMany(PhoneNumber::className(), ['person_id' => 'id']);
     }
 
-    /*public function getPhones()
+    //преобразование даты в формат date для сохранения в базу
+    public function beforeSave($date_of_bday) 
     {
-        $dataProvider = new ActiveDataProvider(
-            [
-            'query'=> PhoneNumbers::find()->where(['pesron_id'=>$id]),
-            ]);
+       if(parent::beforeSave($date_of_bday)) 
+       {
+           $this->date_of_bday = date('Y-m-d', strtotime($this->date_of_bday));
+           return true;
+       } 
+       else 
+       {
+           return false;
+       }
+    }
 
-        return $dataProvider;
-    }*/
-
-
-
+    //преобразование даты из БД в вид 'd.m.Y' для "красивого" вывода
+    public function afterFind() 
+    {
+       $date = date('d.m.Y', strtotime($this->date_of_bday));
+       $this->date_of_bday = $date;
+       parent::afterFind();
+    }
 
 }

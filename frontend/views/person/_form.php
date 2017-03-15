@@ -13,15 +13,15 @@ use yii\jui\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'last_name')->textInput(['placeholder' => 'Введите фамилию','maxlength' => true]) ?>
 
-    <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'first_name')->textInput(['placeholder' => 'Введите имя','maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sur_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sur_name')->textInput(['placeholder' => 'Введите отчество','maxlength' => true]) ?>
 
     <?= $form->field($model, 'date_of_bday')
-    ->widget(DatePicker::className(), ['language' => 'ru','dateFormat' => 'php:d.m.Y',])
-    ->textInput(['placeholder' => 'Выберите дату','dateFormat' => 'php:d.m.Y']) ?>
+    ->widget(DatePicker::className(), ['model' => $model, 'language' => 'ru','dateFormat' => 'dd.MM.yyyy',])
+    ->textInput(['placeholder' => 'Выберите дату',]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
