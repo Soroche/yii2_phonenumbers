@@ -34,7 +34,10 @@ class Person extends \yii\db\ActiveRecord
         return [
             [['first_name', 'last_name', 'sur_name', 'date_of_bday'], 'required'],
             [['date_of_bday'], 'safe'],
-            [['first_name', 'last_name', 'sur_name'], 'string', 'max' => 255],
+            [['first_name', 'last_name', 'sur_name'], 'string', 'max' => 30],
+            [['first_name', 'last_name','sur_name'], 'filter', 'filter' => 'trim', 'skipOnArray' => true],
+            [['first_name', 'last_name', 'sur_name'], 'match', 'pattern' => '/^[А-я\s]+$/u'],
+            [['date_of_bday'],'date', 'format' => 'dd.mm.yyyy'],
         ];
     }
 

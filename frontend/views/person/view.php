@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?> 
 
     <p>
-        <?= Html::a('Добавить номер телефона', ['createphone','$person_id_of_new_cell_number' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить номер телефона', ['createphone','old_person_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -56,8 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['width' => '80'],
                 'template' => '{update} {delete}{link}',
                 'buttons' => [
-                    'update' => function ($model) {
-                        return Html::a('<span class="glyphicon glyphicon-screenshot"></span>', ['updatephone', 'id' => $model->id]);
+                    'update' => function ($url,$model) {
+                        return Html::a('Изменить', ['updatephone', 'id' => $model->id], ['class' => 'btn btn-success']);
+                        },
+                    'delete' => function ($url,$model) {
+                        return Html::a('Удалить', ['deletephone', 'id' => $model->id], ['class' => 'btn btn-success']);
                         },
                     ],
                 ],

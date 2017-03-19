@@ -28,16 +28,16 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Телефонный справочник',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'PhoneBook', 'url' => ['/person/index']],
-        ['label' => 'PhoneNumber', 'url' => ['/phone-number/index']],
+        ['label' => 'Контакты', 'url' => ['/person/index']],
+        //['label' => 'PhoneBook', 'url' => ['/person/index']],
+        //['label' => 'PhoneNumber', 'url' => ['/phone-number/index']],
     ];
     /*
     if (Yii::$app->user->isGuest) {

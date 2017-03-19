@@ -118,7 +118,7 @@ class PersonController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionCreatephone($person_id_of_new_cell_number)
+    public function actionCreatephone($old_person_id)
     {
         $model = new PhoneNumber();
 
@@ -127,7 +127,7 @@ class PersonController extends Controller
         } else {
             return $this->render('createphone', [
                 'model' => $model,
-                'person_id' => $person_id_of_new_cell_number,
+                'old_person_id' => $old_person_id,
 
             ]);
         }
@@ -144,6 +144,14 @@ class PersonController extends Controller
             return $this->render('updatephone', [
                 'model' => $model,
             ]);
+        }
+    }
+
+    public function actionDeletephone($id)
+    {
+        $model = $this->findModelPhone($id);
+        if ($model->delete()){
+            return $this->redirect(['view', 'id' => $model->person_id]);
         }
     }
 

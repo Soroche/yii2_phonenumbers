@@ -31,8 +31,9 @@ class PhoneNumber extends \yii\db\ActiveRecord
         return [
             [['cell_number', 'person_id'], 'required'],
             [['person_id'], 'integer'],
-            [['cell_number'], 'string', 'max' => 255],
+            [['cell_number'], 'string', 'max' => 25],
             [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'id']],
+            
         ];
     }
 

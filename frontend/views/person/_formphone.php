@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\PhoneNumbers */
@@ -10,10 +11,10 @@ use yii\widgets\ActiveForm;
 
 <div class="phone-number-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin();?>
 
-    <?= $form->field($model, 'cell_number')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'cell_number')->widget(MaskedInput::className(), [
+        'mask' => '+7 (999) 999 99 99',])->textInput(['placeholder' => '+7 (999) 999 99 99',]) ?>
     <?= $form->field($model, 'person_id')->hiddenInput(['value'=>$old_person_id])->label(false) ?>
 
     <div class="form-group">
