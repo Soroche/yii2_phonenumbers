@@ -9,8 +9,8 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Person */
 
-$this->title = $model->first_name;
-$this->params['breadcrumbs'][] = ['label' => 'People', 'url' => ['index']];
+$this->title = $model->last_name . '  ' . $model->first_name;
+$this->params['breadcrumbs'][] = ['label' => 'Телефонный справочник', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="person-view">
@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -61,8 +61,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($action,$model) {
                         return Html::a('', Url::to(['phone-number/update', 'id' => $model->id]), ['class' => 'glyphicon glyphicon-pencil']);
                         },
-                    'delete' => function ($action,$model) {
-                        return Html::a('', Url::to(['phone-number/delete', 'id' => $model->id]), ['class' => 'glyphicon glyphicon-trash']);
+                    'delete' => function ($action, $model) {
+                        return Html::a('', Url::to(['phone-number/delete', 'id' => $model->id]), ['class' => 'glyphicon glyphicon-trash', 'data-confirm' => 'Are you sure you want to delete this item?', 'data-method'=>'post']);
                         },
                     ],
                 ],

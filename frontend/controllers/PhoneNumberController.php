@@ -40,7 +40,7 @@ class PhoneNumberController extends Controller
         $searchModel = new PhoneNumberSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('person/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -54,7 +54,6 @@ class PhoneNumberController extends Controller
     public function actionView($id)
     {
         return $this->redirect(['person/view', 'id' => $model->person_id]);
-        //return $this->render('view', ['model' => $this->findModel($id),]);
     }
 
     /**
@@ -65,7 +64,7 @@ class PhoneNumberController extends Controller
     public function actionCreate($oldPersonId)
     {
         $model = new PhoneNumber();
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['person/view', 'id' => $model->person_id]);
         } else {
@@ -104,9 +103,10 @@ class PhoneNumberController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model=$this->findModel($id);
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['person/view', 'id' => $model->person_id]);
     }
 
     /**

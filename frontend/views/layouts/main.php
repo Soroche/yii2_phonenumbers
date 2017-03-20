@@ -37,7 +37,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Контакты', 'url' => ['/person/index']],
         //['label' => 'PhoneBook', 'url' => ['/person/index']],
-        //['label' => 'PhoneNumber', 'url' => ['/phone-number/index']],
+        ['label' => 'PhoneNumber', 'url' => ['/phone-number/index']],
     ];
     /*
     if (Yii::$app->user->isGuest) {

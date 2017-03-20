@@ -134,29 +134,4 @@ class PersonController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
-
-    /*
-    public function actionUpdatephone($id)
-    {
-        $model = $this->findModelPhone($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->person_id]);
-        } 
-        else {
-            return $this->render('updatephone', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    public function actionDeletephone($id)
-    {
-        $model = $this->findModelPhone($id);
-        if ($model->delete()){
-            return $this->redirect(['view', 'id' => $model->person_id]);
-        }
-    }
-    */
 }

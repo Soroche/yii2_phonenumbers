@@ -21,11 +21,39 @@ class m170219_100036_PhoneBook extends Migration
             'id' => $this->primaryKey(),
             'cell_number' => $this->string()->notNull(),
             'person_id' => $this->integer()->notNull(),
+        
         ]); 
+
+        //создание индекса для 'person_id'
+        $this->createIndex(
+            'fk_phone_number_person',
+            'phone_number',
+            'person_id'
+        );
+
+        //создание внешнего ключа
+        $this->addForeignKey(
+            'fk_phone_number_person',
+            'phone_number',
+            'person_id',
+            'person',
+            'id', 
+            'CASCADE'
+        );
+
     }
 
     public function down()
     {
-        return false;
+        $this->dropForeignKey(
+            'fk_phone_number_person',
+            'phone_number'
+            );
+        $this->dropIndex(
+            'fk_phone_number_person',
+            'phone_number'
+        );
+        $this->dropTable('phone_number');
+        $this->dropTable('person');
     }
 }

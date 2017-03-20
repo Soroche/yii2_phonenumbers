@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Person */
 
-$this->title = 'Update Person: ' . $model->first_name;
-$this->params['breadcrumbs'][] = ['label' => 'People', 'url' => ['index']];
+$this->title = 'Изменить контакт: ' . $model->last_name . '  ' . $model->first_name;
+$this->params['breadcrumbs'][] = ['label' => 'Телефонный справочник', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->first_name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="person-update">
 
