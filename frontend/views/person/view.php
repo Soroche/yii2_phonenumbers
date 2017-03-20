@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
@@ -42,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?> 
 
     <p>
-        <?= Html::a('Добавить номер телефона', ['createphone','old_person_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить номер телефона', Url::to(['phone-number/create', 'oldPersonId' => $model->id]) , ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -50,17 +51,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            'id',
             'cell_number',
                 ['class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия', 
                 'headerOptions' => ['width' => '80'],
                 'template' => '{update} {delete}{link}',
                 'buttons' => [
-                    'update' => function ($url,$model) {
-                        return Html::a('Изменить', ['updatephone', 'id' => $model->id], ['class' => 'btn btn-success']);
+                    'update' => function ($action,$model) {
+                        return Html::a('', Url::to(['phone-number/update', 'id' => $model->id]), ['class' => 'glyphicon glyphicon-pencil']);
                         },
-                    'delete' => function ($url,$model) {
-                        return Html::a('Удалить', ['deletephone', 'id' => $model->id], ['class' => 'btn btn-success']);
+                    'delete' => function ($action,$model) {
+                        return Html::a('', Url::to(['phone-number/delete', 'id' => $model->id]), ['class' => 'glyphicon glyphicon-trash']);
                         },
                     ],
                 ],

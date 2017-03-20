@@ -53,6 +53,7 @@ class PersonController extends Controller
      * @param integer $id
      * @return mixed
      */
+    
     public function actionView($id)
     {
         $searchModel = new PhoneNumberSearch();
@@ -65,7 +66,7 @@ class PersonController extends Controller
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);   
     }
 
     /**
@@ -118,21 +119,24 @@ class PersonController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionCreatephone($old_person_id)
+    /**
+     * Finds the Person model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Person the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
     {
-        $model = new PhoneNumber();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->person_id]);
+        if (($model = Person::findOne($id)) !== null) {
+            return $model;
         } else {
-            return $this->render('createphone', [
-                'model' => $model,
-                'old_person_id' => $old_person_id,
-
-            ]);
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 
+
+    /*
     public function actionUpdatephone($id)
     {
         $model = $this->findModelPhone($id);
@@ -154,29 +158,5 @@ class PersonController extends Controller
             return $this->redirect(['view', 'id' => $model->person_id]);
         }
     }
-
-    /**
-     * Finds the Person model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Person the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Person::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-    protected function findModelPhone($id)
-    {
-        if (($model = PhoneNumber::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
+    */
 }

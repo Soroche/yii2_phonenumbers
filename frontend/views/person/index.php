@@ -38,8 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'header'=>'Действия', 
             'headerOptions' => ['width' => '80'],
             'template' => '{view} {update} {delete}{link}',
-        ],
-        ],
+                ],
+            ],
     ]); ?>
 
 

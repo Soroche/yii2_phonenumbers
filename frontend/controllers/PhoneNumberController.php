@@ -5,6 +5,8 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\PhoneNumber;
 use frontend\models\PhoneNumberSearch;
+use frontend\models\Person;
+use frontend\models\PersonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -51,9 +53,8 @@ class PhoneNumberController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->redirect(['person/view', 'id' => $model->person_id]);
+        //return $this->render('view', ['model' => $this->findModel($id),]);
     }
 
     /**
@@ -61,15 +62,17 @@ class PhoneNumberController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($oldPersonId)
     {
         $model = new PhoneNumber();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['person/view', 'id' => $model->person_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'oldPersonId' => $oldPersonId,
+
             ]);
         }
     }
@@ -85,7 +88,7 @@ class PhoneNumberController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['person/view', 'id' => $model->person_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
