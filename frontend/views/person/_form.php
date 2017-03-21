@@ -19,8 +19,16 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'sur_name')->textInput(['placeholder' => 'Введите отчество','maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date_of_bday')
-    ->widget(DatePicker::className(), ['model' => $model, 'language' => 'ru','dateFormat' => 'dd.MM.yyyy',])->textInput(['placeholder' => 'Выберите дату',]) ?>
+    <?= $form->field($model, 'date_of_bday')->widget(DatePicker::className(), [
+            'model' => $model,
+            'dateFormat' => 'dd.MM.yyyy',
+            'language' => 'ru',
+            'clientOptions' => [
+            'maxDate'=>'+0',
+            ],
+        ])->textInput(['placeholder' => 'Выберите дату',]) ?>
+
+    
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

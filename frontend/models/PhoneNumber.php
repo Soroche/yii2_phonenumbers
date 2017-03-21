@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use borales\extensions\phoneInput\PhoneInputValidator;
 
 /**
  * This is the model class for table "phone_number".
@@ -32,6 +33,7 @@ class PhoneNumber extends \yii\db\ActiveRecord
             [['cell_number', 'person_id'], 'required'],
             [['person_id'], 'integer'],
             [['cell_number'], 'string', 'max' => 25],
+            [['cell_number'], PhoneInputValidator::className()],
             [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'id']],
             
         ];

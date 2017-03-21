@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\widgets\MaskedInput;
+use borales\extensions\phoneInput\PhoneInput;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\PhoneNumbers */
@@ -14,8 +14,9 @@ use yii\widgets\MaskedInput;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'cell_number')->widget(MaskedInput::className(), [
-        'mask' => '+7 (999) 999 99 99',])->textInput(['placeholder' => '+7 (999) 999 99 99',]) ?>
+    <?= $form->field($model, 'cell_number')->widget(PhoneInput::className(), [
+            'jsOptions' => [
+            	'preferredCountries' => ['ru', 'pl', 'ua'], ],])->textInput([])->label(false) ?>
 
     <?= $form->field($model, 'person_id')->hiddenInput(['value'=>$oldPersonId])->label(false)?>
 

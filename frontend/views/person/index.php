@@ -23,8 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'tableOptions' => [
-            'class' => 'table table-striped table-bordered'
-        ],
+            'class' => 'table table-striped table-bordered'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'last_name',
@@ -34,10 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'date_of_bday',
             ],
             [
-            'class' => 'yii\grid\ActionColumn',
-            'header'=>'Действия', 
-            'headerOptions' => ['width' => '80'],
-            'template' => '{view} {update} {delete}{link}',
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия', 
+                'headerOptions' => ['width' => '80'],
+                'template' => '{view} {update} {delete}{link}',
                 ],
             ],
     ]); ?>

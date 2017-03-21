@@ -36,7 +36,6 @@ class Person extends \yii\db\ActiveRecord
             [['date_of_bday'], 'safe'],
             [['first_name', 'last_name', 'sur_name'], 'string', 'max' => 30],
             [['first_name', 'last_name','sur_name'], 'filter', 'filter' => 'trim', 'skipOnArray' => true],
-            [['first_name', 'last_name', 'sur_name'], 'match', 'pattern' => '/^[А-я\s]+$/u'],
             [['date_of_bday'],'date', 'format' => 'dd.mm.yyyy'],
         ];
     }
@@ -63,12 +62,17 @@ class Person extends \yii\db\ActiveRecord
         return $this->hasMany(PhoneNumber::className(), ['person_id' => 'id']);
     }
 
-    //преобразование даты в формат date для сохранения в базу
+    /** 
+     * Convert date_of_bday to date format to write in the database
+     * @param  string $date_of_bday
+     * @return data $date_of_bday
+     */
     public function beforeSave($date_of_bday) 
     {
        if(parent::beforeSave($date_of_bday)) 
        {
            $this->date_of_bday = date('Y-m-d', strtotime($this->date_of_bday));
+
            return true;
        } 
        else 
@@ -77,7 +81,11 @@ class Person extends \yii\db\ActiveRecord
        }
     }
 
-    //преобразование даты из БД в вид 'd.m.Y' для "красивого" вывода
+    /** 
+     * Convert date_of_bday to format 'd.m.Y'
+     * @return string 
+     */
+
     public function afterFind() 
     {
        $date = date('d.m.Y', strtotime($this->date_of_bday));

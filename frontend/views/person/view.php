@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
      <?= DetailView::widget([
-        'model' => $model,
+        'model' => $model, 
         'attributes' => [
             'id',
             'last_name',
@@ -51,7 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'cell_number',
                 ['class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия', 

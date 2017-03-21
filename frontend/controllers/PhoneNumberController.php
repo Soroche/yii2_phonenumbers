@@ -5,8 +5,6 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\PhoneNumber;
 use frontend\models\PhoneNumberSearch;
-use frontend\models\Person;
-use frontend\models\PersonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
