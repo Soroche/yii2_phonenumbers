@@ -29,9 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'last_name',
             'first_name',
             'sur_name',
-            [
-                'attribute' => 'date_of_bday',
-            ],
+            'date_of_bday',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия', 

@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use frontend\models\Person;
 use frontend\models\PhoneNumber;
 use frontend\models\PhoneNumberSearch;
 use yii\web\Controller;
@@ -62,13 +63,15 @@ class PhoneNumberController extends Controller
     public function actionCreate($oldPersonId)
     {
         $model = new PhoneNumber();
-        
+        $modelPhone = Person::find()->where(['id'=>$oldPersonId])->one();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['person/view', 'id' => $model->person_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'oldPersonId' => $oldPersonId,
+                'modelPhone' =>$modelPhone,
 
             ]);
         }

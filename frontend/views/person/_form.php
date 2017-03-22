@@ -13,7 +13,7 @@ use yii\jui\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'last_name')->textInput(['placeholder' => 'Введите фамилию','maxlength' => true]) ?>
+    <?= $form->field($model, 'last_name')->textInput(['placeholder' => 'Введите фамилию','maxlength' => true, 'message' => 'Please choose a username.']) ?>
 
     <?= $form->field($model, 'first_name')->textInput(['placeholder' => 'Введите имя','maxlength' => true]) ?>
 

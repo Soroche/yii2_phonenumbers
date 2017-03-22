@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'cell_number',
                 ['class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия', 
-                'headerOptions' => ['width' => '80'],
+                'headerOptions' => ['width' => '100'],
                 'template' => '{update} {delete}{link}',
                 'buttons' => [
                     'update' => function ($action,$model) {
