@@ -18,7 +18,7 @@ use borales\extensions\phoneInput\PhoneInput;
             'jsOptions' => [
             	'preferredCountries' => ['ru', 'pl', 'ua'], ],])->textInput([])->label(false) ?>
 
-    <?= $form->field($model, 'person_id')->hiddenInput(['value'=>$oldPersonId])->label(false)?>
+    <?= $form->field($model, 'person_id')->hiddenInput(['value'=>$model->person_id])->label(false)?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

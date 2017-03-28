@@ -49,6 +49,8 @@ class PersonSearch extends Person
             'query' => $query,
         ]);
 
+        //$this->date_of_bday = date('d.m.Y', );
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -57,15 +59,10 @@ class PersonSearch extends Person
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'date_of_bday' => $this->date_of_bday,
-        ]);
-
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'sur_name', $this->sur_name]);
+            ->andFilterWhere(['like', 'sur_name', $this->sur_name])
+            ->andFilterWhere(['like', 'date_of_bday', $this->date_of_bday]);
 
         return $dataProvider;
     }

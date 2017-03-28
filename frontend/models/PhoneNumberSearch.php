@@ -39,9 +39,9 @@ class PhoneNumberSearch extends PhoneNumber
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id)
     {
-        $query = PhoneNumber::find();
+        $query = PhoneNumber::find()->where(['person_id'=>$id]);
 
         // add conditions that should always apply here
 

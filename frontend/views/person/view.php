@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?> 
 
     <p>
-        <?= Html::a('Добавить номер телефона', Url::to(['phone-number/create', 'oldPersonId' => $model->id]) , ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить номер телефона', Url::to(['phone-number/create', 'personId' => $model->id]) , ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

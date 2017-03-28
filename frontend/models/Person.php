@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use Yii;
-//use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "person".
@@ -65,7 +64,7 @@ class Person extends \yii\db\ActiveRecord
     /** 
      * Convert date_of_bday to date format to write in the database
      * @param  string $date_of_bday
-     * @return data $date_of_bday
+     * @return 
      */
     public function beforeSave($date_of_bday) 
     {
@@ -83,13 +82,11 @@ class Person extends \yii\db\ActiveRecord
 
     /** 
      * Convert date_of_bday to format 'd.m.Y'
-     * @return string 
+     * 
      */
-
     public function afterFind() 
     {
-       $date = date('d.m.Y', strtotime($this->date_of_bday));
-       $this->date_of_bday = $date;
+       $this->date_of_bday = date('d.m.Y', strtotime($this->date_of_bday));
        parent::afterFind();
     }
 

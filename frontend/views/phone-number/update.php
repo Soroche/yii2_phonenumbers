@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Изменить номер телефона:';
 $this->params['breadcrumbs'][] = ['label' => 'Телефонный справочник', 'url' => ['person/index']];
-$this->params['breadcrumbs'][] = ['label' => $model->person_id, 'url' => ['person/view', 'id' => $model->person_id]];
+$this->params['breadcrumbs'][] = ['label' => $modelPerson->last_name . ' ' . $modelPerson->first_name , 'url' => ['person/view', 'id' => $model->person_id]];
 $this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="phone-number-update">

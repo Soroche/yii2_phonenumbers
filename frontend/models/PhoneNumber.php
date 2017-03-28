@@ -33,6 +33,7 @@ class PhoneNumber extends \yii\db\ActiveRecord
             [['cell_number', 'person_id'], 'required'],
             [['person_id'], 'integer'],
             [['cell_number'], 'string', 'max' => 25],
+            //[['cell_number'], 'phoneInputValidator', 'skipOnEmpty' => false, 'skipOnError' => false],
             [['cell_number'], PhoneInputValidator::className()],
             [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'id']],
             
@@ -57,5 +58,27 @@ class PhoneNumber extends \yii\db\ActiveRecord
     public function getPerson()
     {
         return $this->hasOne(Person::className(), ['id' => 'person_id']);
+    }
+
+
+    public function phoneInputValidator($cellNumber)
+    {
+        $cellNumber = preg_replace('/\s|\+|-|\(|\)/','', $cellNumber);
+        if(is_numeric($cellNumber))
+        {
+            if(strlen($cellNumber) < 5)
+            {
+                return false;
+            }
+            else
+            {
+                return $cellNumber;            
+            }
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }

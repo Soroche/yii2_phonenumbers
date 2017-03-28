@@ -56,12 +56,9 @@ class PersonController extends Controller
     
     public function actionView($id)
     {
-        $searchModel = new PhoneNumberSearch();
-        $dataProvider = new ActiveDataProvider(
-            [
-            'query'=> PhoneNumber::find()->where(['person_id'=>$id]),
-            ]);
-                
+        $searchModel = new PhoneNumberSearch();  
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,

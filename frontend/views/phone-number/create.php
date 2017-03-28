@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 $this->title = 'Добавить номер телефона';
 $this->params['breadcrumbs'][] = ['label' => 'Телефонный справочник', 'url' => ['person/index']];
-$this->params['breadcrumbs'][] = ['label' => $modelPhone->last_name . ' ' . $modelPhone->first_name , 'url' => ['person/view', 'id' => $oldPersonId]];
+$this->params['breadcrumbs'][] = ['label' => $modelPerson->last_name . ' ' . $modelPerson->first_name , 'url' => ['person/view', 'id' => $model->person_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="phone-number-create">
@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'oldPersonId' => $oldPersonId,
     ]) ?>
 
 </div>

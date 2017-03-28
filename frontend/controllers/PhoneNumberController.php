@@ -9,6 +9,7 @@ use frontend\models\PhoneNumberSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use borales\extensions\phoneInput\PhoneInputBehavior;
 
 /**
  * PhoneNumberController implements the CRUD actions for PhoneNumber model.
@@ -25,7 +26,9 @@ class PhoneNumberController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                'phoneInput' => PhoneInputBehavior::className(),
                 ],
+            
             ],
         ];
     }
@@ -58,20 +61,21 @@ class PhoneNumberController extends Controller
     /**
      * Creates a new PhoneNumber model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integer $personId
      * @return mixed
      */
-    public function actionCreate($oldPersonId)
+    public function actionCreate($personId)
     {
         $model = new PhoneNumber();
-        $modelPhone = Person::find()->where(['id'=>$oldPersonId])->one();
+        $model->person_id = $personId;
+        $modelPerson = Person::find()->where(['id'=>$personId])->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['person/view', 'id' => $model->person_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'oldPersonId' => $oldPersonId,
-                'modelPhone' =>$modelPhone,
+                'modelPerson' =>$modelPerson,
 
             ]);
         }
@@ -86,12 +90,14 @@ class PhoneNumberController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelPerson = Person::find()->where(['id'=>$model->person_id])->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['person/view', 'id' => $model->person_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'modelPerson' =>$modelPerson,
             ]);
         }
     }
