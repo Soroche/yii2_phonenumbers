@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="blok">
                 <div class="msg-line"></div>
                 <div class="msg-avatar"></div>
-                <div class='msg-name'>fsdfdfsfsfsf fgfgfgfg</div>
+                <div class='msg-name'>Контакт</div>
             </div>
         </html>
     </p>

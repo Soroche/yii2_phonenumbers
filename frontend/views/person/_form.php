@@ -28,8 +28,6 @@ use yii\jui\DatePicker;
             ],
         ])->textInput(['placeholder' => 'Выберите дату',]) ?>
 
-    
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

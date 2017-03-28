@@ -9,7 +9,7 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * This is the model class for table "phone_number".
  *
  * @property integer $id
- * @property string $cell_number
+ * @property string  $cell_number
  * @property integer $person_id
  *
  * @property Person $person
@@ -33,10 +33,8 @@ class PhoneNumber extends \yii\db\ActiveRecord
             [['cell_number', 'person_id'], 'required'],
             [['person_id'], 'integer'],
             [['cell_number'], 'string', 'max' => 25],
-            //[['cell_number'], 'phoneInputValidator', 'skipOnEmpty' => false, 'skipOnError' => false],
             [['cell_number'], PhoneInputValidator::className()],
-            [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'id']],
-            
+            [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'id']],    
         ];
     }
 
@@ -60,7 +58,12 @@ class PhoneNumber extends \yii\db\ActiveRecord
         return $this->hasOne(Person::className(), ['id' => 'person_id']);
     }
 
-
+    /**
+     * Removing extraneous characters and check whether all the digits in the cell_number 
+     * 
+     * @param string $cellNumber
+     * @return cellNumber
+     */
     public function phoneInputValidator($cellNumber)
     {
         $cellNumber = preg_replace('/\s|\+|-|\(|\)/','', $cellNumber);

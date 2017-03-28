@@ -42,9 +42,6 @@ class PhoneNumberSearch extends PhoneNumber
     public function search($params,$id)
     {
         $query = PhoneNumber::find()->where(['person_id'=>$id]);
-
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -52,8 +49,6 @@ class PhoneNumberSearch extends PhoneNumber
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 

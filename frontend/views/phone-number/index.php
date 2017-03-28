@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="phone-number-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Phone Number', ['create'], ['class' => 'btn btn-success']) ?>
@@ -23,14 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'cell_number',
-            [
-            'value' => 'person.last_name',
-            ],
-            [
             
-            'value' => 'person.first_name',
-            ],
+            'cell_number',
+            ['value' => 'person.last_name',],
+            ['value' => 'person.first_name',],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

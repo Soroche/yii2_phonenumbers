@@ -64,14 +64,13 @@ class Person extends \yii\db\ActiveRecord
     /** 
      * Convert date_of_bday to date format to write in the database
      * @param  string $date_of_bday
-     * @return 
+     * @return bool
      */
     public function beforeSave($date_of_bday) 
     {
        if(parent::beforeSave($date_of_bday)) 
        {
            $this->date_of_bday = date('Y-m-d', strtotime($this->date_of_bday));
-
            return true;
        } 
        else 
